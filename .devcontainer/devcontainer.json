@@ -1,19 +1,19 @@
 // For format details, see https://aka.ms/devcontainer.json. For config options, see the
 // README at: https://github.com/devcontainers/templates/tree/main/src/rust
 {
-	"name": "Rust",
+	"name": "scata-core",
 	// Or use a Dockerfile or Docker Compose file. More info: https://containers.dev/guide/dockerfile
 	// "image": "mcr.microsoft.com/devcontainers/rust:0-1-bullseye",
 
 	// "runArgs": ["--platform=linux/amd64" ],
+	"dockerComposeFile": [
+		"./docker-compose.yml",
+		"./docker-compose.extended.yml"
+	],
 
-	"build" : {
-		"dockerfile" : "Dockerfile"
-	},
+	"service": "app",
 
-	"containerEnv": {
-		"CARGO_NET_GIT_FETCH_WITH_CLI": "true"
-	},
+	"workspaceFolder": "/workspaces/scata-core",
 
 	// Use 'mounts' to make the cargo cache persistent in a Docker Volume.
 	// "mounts": [
@@ -28,13 +28,21 @@
 	// "features": {},
 
 	// Use 'forwardPorts' to make a list of ports inside the container available locally.
-	"forwardPorts": [8112],
 
 	// Use 'postCreateCommand' to run commands after the container is created.
 	// "postCreateCommand": "rustc --version",
 
 	// Configure tool-specific properties.
-	// "customizations": {},
+	"customizations": {
+		// Configure properties specific to VS Code.
+		"vscode": {
+		  // Add the IDs of extensions you want installed when the container is created.
+		  "extensions": [
+			"GitHub.vscode-pull-request-github",
+			"eamodio.gitlens",
+		  ]
+		}
+	  },
 
 	// Uncomment to connect as root instead. More info: https://aka.ms/dev-containers-non-root.
 	"remoteUser": "root"

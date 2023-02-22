@@ -1,0 +1,13 @@
+version: '3.8'
+
+services:
+  app:
+    build: ./app
+    ports:
+      - 8000:8000
+
+  db:
+    image: mariadb:latest
+    restart: always
+    volumes:
+      - ./db:/var/lib/mysql

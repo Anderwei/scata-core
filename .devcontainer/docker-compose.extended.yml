@@ -1,0 +1,17 @@
+version: '3.8'
+
+services:
+  app:
+    volumes:
+      - ../:/workspaces/scata-core:cached
+    cap_add:
+      - SYS_PTRACE
+    security_opt:
+      - seccomp:unconfined
+    command: /bin/sh -c "while sleep 1000; do :; done"
+
+  db:
+    volumes:
+      - ../:/workspaces/scata-core:cached
+    environment:
+      - MARIADB_ROOT_PASSWORD=123456789
